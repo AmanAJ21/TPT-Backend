@@ -10,8 +10,7 @@ const connectDB = async () => {
     }
 
     const mongoURI = process.env.MONGODB_URI || 'mongodb://localhost:27017/myapp';
-    
-    
+
     // Serverless-optimized connection options
     const options = {
       maxPoolSize: 5, // Smaller pool for serverless
@@ -27,11 +26,11 @@ const connectDB = async () => {
       options.retryWrites = true;
       options.w = 'majority';
     }
-    
+
     await mongoose.connect(mongoURI, options);
 
     console.log('✅ MongoDB Connected:', mongoose.connection.host);
-    
+
     // Handle connection events (simplified for serverless)
     mongoose.connection.on('error', (err) => {
       console.error('❌ MongoDB connection error:', err.message);
