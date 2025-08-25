@@ -1,17 +1,4 @@
 {
-  "functions": {
-    "api/**/*.js": {
-      "maxDuration": 30
-    }
-  },
-  "rewrites": [
-    {
-      "source": "/test",
-      "destination": "/api/test"
-    },
-    {
-      "source": "/(.*)",
-      "destination": "/api/index"
-    }
-  ]
+  "version": 2,
+  "rewrites": [{ "source": "/(.*)", "destination": "/api" }]
 }
