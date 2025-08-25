@@ -1,0 +1,7 @@
+src/
+tests/
+logs/
+node_modules/
+.env
+*.log
+*.md
