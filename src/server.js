@@ -5,12 +5,16 @@ const { securityConfig, createRateLimiters, securityHeaders } = require('./confi
 require('dotenv').config();
 
 // Import logging and debugging utilities
-const logger = require('./utils/logger');
+const logger = process.env.VERCEL === '1' 
+  ? require('./utils/logger-serverless') 
+  : require('./utils/logger');
 const debug = require('./utils/debug');
 const { requestLogger, errorRequestLogger } = require('./middleware/requestLogger');
 const { performanceMonitoring, healthCheck, errorTracking } = require('./middleware/monitoring');
 
-const connectDB = require('./config/database');
+const connectDB = process.env.VERCEL === '1' 
+  ? require('./config/database-serverless') 
+  : require('./config/database');
 const authRoutes = require('./routes/auth');
 const userRoutes = require('./routes/users');
 const transportEntryRoutes = require('./routes/transportEntries');
@@ -26,8 +30,30 @@ logger.info('🚀 Starting server...', {
 
 debug.env(); // Log environment info in debug mode
 
-// Connect to MongoDB
-connectDB();
+// Connect to MongoDB (with error handling for serverless)
+if (process.env.VERCEL === '1') {
+  // Serverless: Connect on first request to avoid cold start issues
+  let dbConnected = false;
+  
+  app.use(async (req, res, next) => {
+    if (!dbConnected) {
+      try {
+        await connectDB();
+        dbConnected = true;
+      } catch (error) {
+        console.error('Database connection failed:', error.message);
+        return res.status(500).json({ 
+          error: 'Database connection failed',
+          message: 'Please try again later'
+        });
+      }
+    }
+    next();
+  });
+} else {
+  // Traditional deployment: Connect immediately
+  connectDB();
+}
 
 const app = express();
 const PORT = process.env.PORT || 5000;
