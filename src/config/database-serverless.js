@@ -11,6 +11,7 @@ const connectDB = async () => {
 
     const mongoURI = process.env.MONGODB_URI || 'mongodb://localhost:27017/myapp';
     
+    
     // Serverless-optimized connection options
     const options = {
       maxPoolSize: 5, // Smaller pool for serverless
