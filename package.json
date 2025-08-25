@@ -21,7 +21,8 @@
     "docker:compose:down": "docker-compose down",
     "security:audit": "npm audit --audit-level=high",
     "lint": "eslint src/",
-    "lint:fix": "eslint src/ --fix"
+    "lint:fix": "eslint src/ --fix",
+    "deploy:setup": "node deploy-setup.js"
   },
   "keywords": ["nodejs", "express", "api"],
   "dependencies": {
