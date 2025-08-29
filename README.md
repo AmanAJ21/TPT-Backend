@@ -108,37 +108,5 @@ npm run pm2:start
 - Error sanitization
 - Security-focused ESLint rules
 
-## 🧪 Testing
-
-```bash
-# Run all tests
-npm test
-
-# Run tests with coverage
-npm run test:coverage
-
-# Run tests in watch mode
-npm run test:watch
-```
-
-## 📚 Documentation
-
-- [Production Deployment Guide](./DEPLOYMENT.md)
-- [Vercel Deployment Guide](./VERCEL_DEPLOYMENT.md)
-- [Production Checklist](./PRODUCTION_CHECKLIST.md)
-
-## 🤝 Contributing
-
-1. Fork the repository
-2. Create a feature branch
-3. Make your changes
-4. Run tests and linting
-5. Submit a pull request
-
-## 📄 License
-
-This project is licensed under the MIT License.
-
----
 
 Built with ❤️ for production deployment
