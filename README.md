@@ -24,10 +24,6 @@ A production-ready Node.js backend API built with Express.js, featuring comprehe
 ├── api/                 # Vercel serverless functions
 ├── tests/               # Test files
 ├── logs/                # Application logs (auto-generated)
-├── docker-compose.yml   # Docker deployment
-├── ecosystem.config.js  # PM2 configuration
-├── vercel.json         # Vercel deployment config
-└── nginx.conf          # Nginx reverse proxy config
 ```
 
 ## 🛠️ Quick Start
@@ -76,20 +72,6 @@ JWT_SECRET=your-super-secure-jwt-secret
 CORS_ORIGIN=https://your-frontend-domain.com
 ```
 
-## 🚀 Deployment Options
-
-### Vercel (Recommended)
-See [VERCEL_DEPLOYMENT.md](./VERCEL_DEPLOYMENT.md) for detailed instructions.
-
-### Docker
-```bash
-docker-compose up -d
-```
-
-### PM2
-```bash
-npm run pm2:start
-```
 
 ## 📊 Monitoring
 
